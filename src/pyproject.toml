@@ -1,0 +1,9 @@
+[tool.black]
+line-length = 100
+# Adjust to the lowest Python version we need to support
+target-version = ["py38"]
+extend-exclude = ".venv"
+
+[tool.isort]
+line_length = 100
+profile = "black"
