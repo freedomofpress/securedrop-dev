@@ -5,19 +5,19 @@ all: help
 lint: check-isort check-black ## Run all linters and formatters
 
 .PHONY: black
-black: ## Check Python source code formatting with black
+black: ## Update Python source code formatting with black
 	@black .
 
 .PHONY: check-black
-check-black: ## Update Python source code formatting with black
+check-black: ## Check Python source code formatting with black
 	@black --check --diff .
 
 .PHONY: isort
-isort: ## Check Python import organization with isort
+isort: ## Update Python import organization with isort
 	@isort .
 
 .PHONY: check-isort
-check-isort: ## Update Python import organization with isort
+check-isort: ## Check Python import organization with isort
 	@isort --check-only --diff .
 
 # Explanation of the below shell command should it ever break.
