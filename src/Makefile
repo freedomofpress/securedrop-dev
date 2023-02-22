@@ -29,7 +29,6 @@ check-isort: ## Check Python import organization with isort
 # 6. Format columns with colon as delimiter.
 .PHONY: help
 help: ## Print this message and exit.
-	@printf "Makefile for developing and testing the SecureDrop proxy.\n"
 	@printf "Subcommands:\n\n"
 	@awk 'BEGIN {FS = ":.*?## "} /^[0-9a-zA-Z_-]+:.*?## / {printf "\033[36m%s\033[0m : %s\n", $$1, $$2}' $(MAKEFILE_LIST) \
 		| sort \
