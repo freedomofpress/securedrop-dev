@@ -10,6 +10,11 @@ Some more details on the status quo and motivation for standardization are captu
 Currently other repositories will need to be manually synchronized
 with this one, in the future we may pursue some form of automation.
 
+## Tools
+The following tools are currently configured by this repository:
+* [black](https://black.readthedocs.io/en/stable/)
+* [isort](https://pycqa.github.io/isort/)
+
 ## License
 This repository is dual-licensed under the GPL-3.0-or-later and AGPL-3.0-or-later
 licenses, as the purpose is for things to be copied to SecureDrop repositories.
