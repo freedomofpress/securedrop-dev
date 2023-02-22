@@ -2,7 +2,7 @@
 all: help
 
 .PHONY: lint
-lint: check-isort check-black ## Run all linters and formatters
+lint: check-isort check-black ## Check all linters and formatters (no changes will be made)
 
 .PHONY: black
 black: ## Update Python source code formatting with black
