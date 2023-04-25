@@ -15,6 +15,10 @@ The following tools are currently configured by this repository:
 * [black](https://black.readthedocs.io/en/stable/)
 * [isort](https://pycqa.github.io/isort/)
 
+## Services
+The following services are currently configured by this repository:
+* [dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts)
+
 ## License
 This repository is dual-licensed under the GPL-3.0-or-later and AGPL-3.0-or-later
 licenses, as the purpose is for things to be copied to SecureDrop repositories.
