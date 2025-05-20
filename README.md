@@ -1,25 +1,15 @@
 # securedrop-tooling
-This git repository contains standard tooling configuration for
-all the SecureDrop repositories. It will allow us to gradually
-standardize on how tools are configured and developers execute
-them.
 
-Some more details on the status quo and motivation for standardization are captured in the
-[Tooling, automation and developer experience](https://github.com/freedomofpress/securedrop/wiki/Tooling,-automation-and-developer-experience) wiki page.
+This repository is used to track issues that are relevant to multiple SecureDrop
+repositories. Please file issues in more narrowly scoped repositories when appropriate,
+including [securedrop](https://github.com/freedomofpress/securedrop) for issues relevant only to SecureDrop server development, and
+[securedrop-workstation](https://github.com/freedomofpress/securedrop-workstation)
+for issues relevant only to SecureDrop Workstation development.
 
-Currently other repositories will need to be manually synchronized
-with this one, in the future we may pursue some form of automation.
-
-## Tools
-The following tools are currently configured by this repository:
-* [black](https://black.readthedocs.io/en/stable/)
-* [isort](https://pycqa.github.io/isort/)
-
-## Services
-The following services are currently configured by this repository:
-* [dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts)
+This repo can also be used to hold code or configuration files with broad utility across SecureDrop development.
 
 ## License
+
 This repository is dual-licensed under the GPL-3.0-or-later and AGPL-3.0-or-later
 licenses, as the purpose is for things to be copied to SecureDrop repositories.
 
