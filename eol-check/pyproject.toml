@@ -1,0 +1,17 @@
+[project]
+name = "eol-check"
+version = "0.1.0"
+description = "End‑of‑life monitoring utility"
+authors = [
+    {name = "SecureDrop Team", email = "securedrop@freedom.press"}
+]
+license = "MIT"
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.32"
+PyYAML = "^6.0"
+ics = "^0.7"
