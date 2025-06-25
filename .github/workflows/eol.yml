@@ -1,61 +1,48 @@
 name: EOL check
-
-on:
-  schedule:
-    - cron: "0 3 * * *"  # nightly at 03:00 UTC
-  workflow_dispatch:
-
+on: [push, pull_request]
 jobs:
   generate-ics:
     runs-on: ubuntu-latest
     container: debian:trixie
     steps:
+      - name: Install system dependencies
+        run: |
+          apt-get update
+          apt-get install -y python3-poetry git
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.PUSH_TOKEN }}  # grants push rights
-
-      - name: Install Poetry & deps
+      - name: Install Python deps and build calendar
         run: |
-          apt-get update
-          apt-get install -y python3-poetry
-          cd eol-check
           poetry install --no-interaction
-
-      - name: Build calendar
-        run: |
           poetry run python eol_check.py generate-ics eol.yaml eol.ics
         working-directory: eol-check
-
       - name: Commit updated calendar
         run: |
+          git config --global --add safe.directory '*'
           git config user.name "sdcibot"
           git config user.email "securedrop@freedom.press"
           git add eol-check/eol.ics
           if git diff --staged --quiet; then
             echo "No calendar changes; skip commit."
           else
-            echo "I would commit things now if only I had a token"
-            # git commit -m "chore: update EOL calendar"
+            git commit -m "chore: update EOL calendar"
             git push
           fi
 
   open-issues:
-    needs: generate-ics
     runs-on: ubuntu-latest
     container: debian:trixie
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Poetry & deps
+      - name: Install system dependencies
         run: |
           apt-get update
-          apt-get install -y python3-poetry
-          cd eol-check
-          poetry install --no-interaction
-
-      - name: File issues when EOL is near
+          apt-get install -y python3-poetry git
+      - uses: actions/checkout@v4
+      - name: Install Pythen deps and open issues
         env:
           GH_TOKEN: ${{ secrets.ISSUES_TOKEN }}
         run: |
+          poetry install --no-interaction
           poetry run python eol_check.py open-issues eol.yaml
         working-directory: eol-check
