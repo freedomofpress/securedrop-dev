@@ -28,7 +28,7 @@ from ics import Calendar, Event
 
 TITLE_TMPL = "{product} {version} reaches EOL on {eol_date}"
 BODY_TMPL = (
-    "⚠️ **End‑of‑life approaching**\n\n"
+    "⚠️ **End-of-life approaching**\n\n"
     "* **Product:** {product} {version}\n"
     "* **EOL date:** {eol_date}\n\n"
     "_Source: {source_ref}_\n"
@@ -59,14 +59,11 @@ def _resolve_eol(entry: Dict[str, Any]) -> dt.date:
         return _iso(entry["eol_date"])
 
     ep = entry["api_endpoint"]
-    rv = requests.get(ep, timeout=10)
+    rv = requests.get(ep)
     rv.raise_for_status()
-    payload: Any = rv.json()
+    payload = rv.json()
 
-    try:
-        releases = payload["result"]["releases"]
-    except (KeyError, TypeError):
-        raise ValueError(f"Unexpected schema from {ep}; expected result.releases")
+    releases = payload["result"]["releases"]
 
     version = str(entry["version"])
     for rel in releases:

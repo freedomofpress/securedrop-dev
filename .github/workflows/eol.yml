@@ -1,5 +1,9 @@
 name: EOL check
-on: [push, pull_request]
+on:
+  schedule:
+    - cron: "0 7 * * *"
+permissions:
+  contents: write
 jobs:
   generate-ics:
     runs-on: ubuntu-latest
@@ -10,8 +14,6 @@ jobs:
           apt-get update
           apt-get install -y python3-poetry git
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PUSH_TOKEN }}  # grants push rights
       - name: Install Python deps and build calendar
         run: |
           poetry install --no-interaction

@@ -23,5 +23,5 @@
   version: "40"
   source: api
   api_endpoint: https://endoflife.date/api/v1/products/fedora
-  warn_Days: 30
+  warn_days: 30
   issue_repo: freedomofpress/securedrop-workstation
