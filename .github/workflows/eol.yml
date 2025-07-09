@@ -39,7 +39,7 @@ jobs:
       - name: Install system dependencies
         run: |
           apt-get update
-          apt-get install -y python3-poetry git
+          apt-get install -y python3-poetry git gh
       - uses: actions/checkout@v4
       - name: Install Pythen deps and open issues
         env:
