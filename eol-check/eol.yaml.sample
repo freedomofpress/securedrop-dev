@@ -1,0 +1,32 @@
+# Sample EOL monitoring configuration
+# -----------------------------------
+# • List one object per <product,version> you care about.
+# • If `source: api`, give endoflife.date `api_endpoint`; otherwise set `source: manual` and
+#   supply `eol_date` (YYYY‑MM‑DD).
+# • `issue_repo` and `warn_days` are optional.
+- product: ubuntu
+  version: "24.04"
+  source: api
+  api_endpoint: https://endoflife.date/api/v1/products/ubuntu
+  issue_repo: freedomofpress/securedrop
+  warn_days: 180
+
+- product: ubuntu
+  version: "20.04"
+  source: api
+  api_endpoint: https://endoflife.date/api/v1/products/ubuntu
+  issue_repo: freedomofpress/securedrop
+  warn_days: 180
+
+- product: fedora
+  version: "41"
+  source: api
+  api_endpoint: https://endoflife.date/api/v1/products/fedora
+  warn_days: 60   # No `issue_repo` ⇒ only calendar reminders
+
+- product: widget
+  version: "v2"
+  source: manual
+  eol_date: "2027-12-31"
+  issue_repo: my-org/hardware
+  warn_days: 90

@@ -1,0 +1,20 @@
+- product: ubuntu
+  version: "24.04"
+  source: api
+  api_endpoint: https://endoflife.date/api/v1/products/ubuntu
+  issue_repo: freedomofpress/securedrop
+  warn_days: 180
+
+- product: fedora
+  version: "41"
+  source: api
+  api_endpoint: https://endoflife.date/api/v1/products/fedora
+  warn_days: 60
+  issue_repo: freedomofpress/securedrop-workstation
+
+- product: debian
+  version: "12"
+  source: api
+  api_endpoint: https://endoflife.date/api/v1/products/debian
+  warn_days: 90
+  issue_repo: freedomofpress/securedrop-workstation
