@@ -1,7 +1,6 @@
 name: EOL check
 
 on:
-  push:
   schedule:
     - cron: "0 7 * * *"
 permissions:
