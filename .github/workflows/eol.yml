@@ -1,9 +1,11 @@
 name: EOL check
+
 on:
   schedule:
     - cron: "0 7 * * *"
 permissions:
   contents: write
+
 jobs:
   generate-ics:
     runs-on: ubuntu-latest
@@ -13,22 +15,38 @@ jobs:
         run: |
           apt-get update
           apt-get install -y python3-poetry git
-      - uses: actions/checkout@v4
+
+      - uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          app-id: ${{ vars.FPF_BRANCH_UPDATER_APP_ID }}
+          private-key: ${{ secrets.FPF_BRANCH_UPDATER_APP_PRIVKEY }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Install Python deps and build calendar
         run: |
           poetry install --no-interaction
           poetry run python eol_check.py generate-ics eol.yaml eol.ics
         working-directory: eol-check
-      - name: Commit updated calendar
+
+      - name: Set some git configs
         run: |
           git config --global --add safe.directory '*'
-          git config user.name "sdcibot"
-          git config user.email "securedrop@freedom.press"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit updated calendar
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
           git add eol-check/eol.ics
           if git diff --staged --quiet; then
             echo "No calendar changes; skip commit."
           else
             git commit -m "chore: update EOL calendar"
+            git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
             git push
           fi
 
@@ -40,7 +58,10 @@ jobs:
         run: |
           apt-get update
           apt-get install -y python3-poetry git gh
-      - uses: actions/checkout@v4
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Install Pythen deps and open issues
         env:
           GH_TOKEN: ${{ secrets.ISSUES_TOKEN }}
