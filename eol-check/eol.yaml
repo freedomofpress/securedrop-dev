@@ -6,7 +6,7 @@
   warn_days: 180
 
 - product: fedora
-  version: "41"
+  version: "39"
   source: api
   api_endpoint: https://endoflife.date/api/v1/products/fedora
   warn_days: 60
