@@ -46,7 +46,17 @@ jobs:
         run: |
           git add eol-check/eol.ics
           if git diff --staged --quiet; then
-            echo "No calendar changes; skip commit."
+            echo "No calendar changes"
+
+            # Weekly commit to avoid going stale
+            if git log -1 --format=%cr | grep -Eq '(week(s)?|month(s)?|year(s)?) ago'; then
+              git commit --allow-empty  -m "chore: bump to avoid going stale" -m "Otherwise actions would be disabled (see issue #36)"
+              git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+              git push
+            else
+              echo "skipping commit"
+            fi
+
           else
             git commit -m "chore: update EOL calendar"
             git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
