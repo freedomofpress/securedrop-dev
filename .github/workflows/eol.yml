@@ -31,6 +31,7 @@ jobs:
       - name: Install Python deps and build calendar
         run: |
           poetry install --no-interaction
+          poetry run python sync_versions.py
           poetry run python eol_check.py generate-ics eol.yaml eol.ics
         working-directory: eol-check
 
