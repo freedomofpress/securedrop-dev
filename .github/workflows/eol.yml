@@ -45,7 +45,7 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
-          git add eol-check/eol.ics
+          git add eol-check/eol.ics eol-check/eol.yaml
           if git diff --staged --quiet; then
             echo "No calendar changes"
 
