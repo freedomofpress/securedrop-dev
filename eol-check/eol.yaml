@@ -6,14 +6,14 @@
   warn_days: 180
 
 - product: fedora
-  version: "42"
+  version: "43"
   source: api
   api_endpoint: https://endoflife.date/api/v1/products/fedora
   warn_days: 60
   issue_repo: freedomofpress/securedrop-workstation
 
 - product: debian
-  version: "12"
+  version: "13"
   source: api
   api_endpoint: https://endoflife.date/api/v1/products/debian
   warn_days: 90
