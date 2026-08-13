@@ -20,7 +20,7 @@
   issue_repo: freedomofpress/securedrop-workstation
 
 - product: electron
-  version: "40"
+  version: "43"
   source: api
   api_endpoint: https://endoflife.date/api/v1/products/electron
   warn_days: 30
