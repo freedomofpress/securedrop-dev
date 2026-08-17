@@ -23,7 +23,7 @@ jobs:
           private-key: ${{ secrets.FPF_BRANCH_UPDATER_APP_PRIVKEY }}
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ steps.app-token.outputs.token }}
           persist-credentials: false
@@ -74,7 +74,7 @@ jobs:
           apt-get install -y python3-poetry git gh
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install Pythen deps and open issues
         env:
